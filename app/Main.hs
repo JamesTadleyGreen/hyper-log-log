@@ -1,13 +1,16 @@
 import Data.Bits (FiniteBits (countTrailingZeros))
 import Data.Hashable (Hashable (hash))
 import Data.List (nub)
+import Date.Random.Extras (sample)
 
-test = [1, 1, 1, 2, 2, 1, 3, 4, 5, 6, 4, 3, 2, 4, 5, 6, 4]
+integers = [1 ..]
+
+test = sample 100 integers
 
 deterministicCount :: [Int] -> Int
 deterministicCount = length . nub
 
--- probablisticCount :: [Int] -> Int
+probablisticCount :: [Int] -> Int
 probablisticCount l = maximum $ map (countTrailingZeros . hash) l
 
 main = do
