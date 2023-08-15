@@ -32,6 +32,9 @@ executable hyper-log-log
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
     build-depends:
-        base ^>=4.16.4.0
+        base ^>=4.16.4.0,
+        hashable ^>=1.3.0.0,
+        random ^>=1.0.0.0,
+        criterion ^>=1.6.0.0,
     hs-source-dirs:   app
     default-language: Haskell2010

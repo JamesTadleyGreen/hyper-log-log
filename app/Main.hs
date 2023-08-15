@@ -1,18 +1,26 @@
 import Data.Bits (FiniteBits (countTrailingZeros))
 import Data.Hashable (Hashable (hash))
-import Data.List (nub)
-import Date.Random.Extras (sample)
+import Data.List
+import System.Random
 
-integers = [1 ..]
+phi :: Float
+phi = 0.77351
 
-test = sample 100 integers
+randomList :: (Int, Int) -> StdGen -> Int -> [Int]
+randomList i g n = take n $ randomRs i g
 
 deterministicCount :: [Int] -> Int
 deterministicCount = length . nub
 
-probablisticCount :: [Int] -> Int
-probablisticCount l = maximum $ map (countTrailingZeros . hash) l
+probablisticCount :: [Int] -> Float
+probablisticCount l = 2 ^ maximum (map (countTrailingZeros . hash) l) / phi
 
 main = do
-  print $ deterministicCount test
-  print $ probablisticCount test
+  seed <- getStdGen
+  let test = randomList (1, 100000) seed 50000
+  let probablistic = probablisticCount test
+  print probablistic
+  let deterministic = deterministicCount test
+  print deterministic
+  let accuracy = fromIntegral deterministic / probablistic
+  print accuracy

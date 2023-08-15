@@ -1,8 +1,5 @@
 # Makefile for Haskell project
 
-# Specify the name of the Cabal executable
-EXECUTABLE = myapp
-
 # Default target: build and run the executable
 default: run
 
@@ -12,7 +9,7 @@ build:
 
 # Run the executable
 run: build
-	cabal run $(EXECUTABLE)
+	cabal run
 
 # Clean the project
 clean:
