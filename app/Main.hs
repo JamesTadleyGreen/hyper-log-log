@@ -1,3 +1,4 @@
+import Criterion.Main
 import Data.Bits (FiniteBits (countTrailingZeros))
 import Data.Hashable (Hashable (hash))
 import Data.List
